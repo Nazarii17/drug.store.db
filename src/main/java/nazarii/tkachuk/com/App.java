@@ -2,10 +2,12 @@ package nazarii.tkachuk.com;
 
 import nazarii.tkachuk.com.DAO.CustomerDAO;
 import nazarii.tkachuk.com.entities.Customer;
+import nazarii.tkachuk.com.services.CustomerService;
 
 public class App {
     public static void main(String[] args) {
 
+        CustomerService customerService = new CustomerService();
         CustomerDAO customerDAO = new CustomerDAO();
 //
 //        Optional<Customer> customerOptional = customerDAO.getByID(1);
@@ -45,8 +47,11 @@ public class App {
 
 
         Customer customer = new Customer("Kitty", "Hobs", "507737490", "kitty@mail.com");
-        customerDAO.save(customer);
+//        customerDAO.save(customer);
         System.out.println(customerDAO.getAll());
+
+        customerService.update(customerService.getByID(12),"Angela", "Chick", "507737444", "angela@mail.com");
+
 
     }
 }
