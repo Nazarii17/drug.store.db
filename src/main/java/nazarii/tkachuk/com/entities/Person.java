@@ -7,6 +7,9 @@ public class Person extends EntityID {
     protected String name;
     protected String lastName;
 
+    public Person() {
+    }
+
     public Person(Integer id) {
         this.id = id;
     }

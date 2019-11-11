@@ -6,6 +6,10 @@ import java.util.Objects;
 
 public class Customer extends Person /*implements CSVSerializable8*/ {
     private String phoneNumber;
+    private String email;
+
+    public Customer() {
+    }
 
     public Customer(Integer id) {
         super(id);
@@ -16,9 +20,21 @@ public class Customer extends Person /*implements CSVSerializable8*/ {
         this.phoneNumber = phoneNumber;
     }
 
+    public Customer(String name, String lastName, String phoneNumber, String email) {
+        super(null, name, lastName);
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+
     public Customer(Integer id, String name, String lastName, String phoneNumber) {
         super(id, name, lastName);
         this.phoneNumber = phoneNumber;
+    }
+
+    public Customer(Integer id, String name, String lastName, String phoneNumber, String email) {
+        super(id, name, lastName);
+        this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 
     public String getPhoneNumber() {
@@ -29,32 +45,41 @@ public class Customer extends Person /*implements CSVSerializable8*/ {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
                 "ID = " + id +
                 ", First name = '" + name + '\'' +
                 ", Last name = '" + lastName + '\'' +
-                ", phone number = +380" + phoneNumber +
+                ", Phone number = +380" + phoneNumber +
+                ", email = " + email +
                 '}';
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Customer)) return false;
         if (!super.equals(o)) return false;
         Customer customer = (Customer) o;
-        return getPhoneNumber().equals(customer.getPhoneNumber());
+        return phoneNumber.equals(customer.phoneNumber) &&
+                email.equals(customer.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getPhoneNumber());
+        return Objects.hash(super.hashCode(), phoneNumber, email);
     }
 
-//    @Override
+    //    @Override
 //    public String toCSVFormattedString() {
 //        return String.format(CSVFormats.CUSTOMER.getFormatValue(), id+",", name +",", lastName+",",  phoneNumber);
 //    }

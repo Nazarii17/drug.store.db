@@ -11,44 +11,36 @@ public class Order extends EntityID /*implements CSVSerializable*/ {
     private Integer id;
     private LocalDate orderDate;
     private Integer quantity;
-    private Customer customer;
-    private Product product;
     private Integer customerID;
     private Integer productID;
     private BigDecimal price;
 
-    public Order(int id, LocalDate orderDate, Integer quantity, Customer customer, Product product) {
+    public Order(int id, LocalDate orderDate, Integer quantity, Integer customerID, Integer productID) {
         this.id = id;
         this.orderDate = orderDate;
         this.quantity = quantity;
-        this.customer = customer;
-        this.product = product;
-        this.customerID = customer.getId();
-        this.productID = product.getId();
-        this.price = BigDecimal.valueOf(quantity).multiply(product.getPrice());
+        this.customerID = customerID;
+        this.productID = productID;
+//        this.price = BigDecimal.valueOf(quantity).multiply(product.getPrice());
     }
 
-    public Order(LocalDate orderDate, Integer quantity, Customer customer, Product product, BigDecimal price) {
+    public Order(LocalDate orderDate, Integer quantity, Integer customerID, Integer productID/*, BigDecimal price*/) {
         this.id = null;
         this.orderDate = orderDate;
         this.quantity = quantity;
-        this.customer = customer;
-        this.product = product;
-        this.customerID = customer.getId();
-        this.productID = product.getId();
-        this.price = price.setScale(2, RoundingMode.HALF_EVEN);
+        this.customerID = customerID;
+        this.productID = productID;
+//        this.price = price.setScale(2, RoundingMode.HALF_EVEN);
     }
 
-    public Order(int id, LocalDate orderDate, Integer quantity, Customer customer, Product product, BigDecimal price) {
-        this.id = id;
-        this.orderDate = orderDate;
-        this.quantity = quantity;
-        this.customer = customer;
-        this.product = product;
-        this.customerID = customer.getId();
-        this.productID = product.getId();
-        this.price = price.setScale(2, RoundingMode.HALF_EVEN);
-    }
+//    public Order(int id, LocalDate orderDate, Integer quantity, Integer customerID, Integer productID) {
+//        this.id = id;
+//        this.orderDate = orderDate;
+//        this.quantity = quantity;
+//        this.customerID = customerID;
+//        this.productID = productID;
+//        this.price = BigDecimal.valueOf(quantity).multiply(product.getPrice());
+//    }
 
     public Integer getId() {
         return id;
@@ -74,21 +66,21 @@ public class Order extends EntityID /*implements CSVSerializable*/ {
         this.quantity = quantity;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+//    public Customer getCustomer() {
+//        return customer;
+//    }
+//
+//    public void setCustomer(Customer customer) {
+//        this.customer = customer;
+//    }
+//
+//    public Product getProduct() {
+//        return product;
+//    }
+//
+//    public void setProduct(Product product) {
+//        this.product = product;
+//    }
 
     @Override
     public String toString() {

@@ -9,6 +9,7 @@ public class Product extends EntityID /*implements CSVSerializable*/ {
     private String name;
     private BigDecimal price;
     private String info;
+    private Integer discount;
 
     public Product(Integer id) {
         this.id = id;
@@ -28,12 +29,12 @@ public class Product extends EntityID /*implements CSVSerializable*/ {
         this.info = info;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Product(Integer id, String name, BigDecimal price, String info, Integer discount) {
+        this.id = id;
         this.name = name;
+        this.price = price;
+        this.info = info;
+        this.discount = discount;
     }
 
     public Integer getId() {
@@ -42,6 +43,14 @@ public class Product extends EntityID /*implements CSVSerializable*/ {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public BigDecimal getPrice() {
@@ -60,13 +69,22 @@ public class Product extends EntityID /*implements CSVSerializable*/ {
         this.info = info;
     }
 
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "ID of the product = " + id +
                 ", Name = '" + name + '\'' +
-                ", Price = " + price + "$" +
+                ", " + price + "$" +
                 ", \nInformation: \n'" + info + " '" +
+                ", Discount = : \n'" + discount + "% '" +
                 '}';
     }
 
