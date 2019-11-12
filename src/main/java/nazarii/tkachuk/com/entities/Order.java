@@ -2,45 +2,62 @@ package nazarii.tkachuk.com.entities;
 
 //import nazarii.tkachuk.com.enums.CSVFormats;
 
+import nazarii.tkachuk.com.services.ProductService;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Order extends EntityID /*implements CSVSerializable*/ {
     private Integer id;
-    private LocalDate orderDate;
+    private Timestamp orderDate;
     private Integer quantity;
     private Integer customerID;
     private Integer productID;
     private BigDecimal price;
 
-    public Order(int id, LocalDate orderDate, Integer quantity, Integer customerID, Integer productID) {
+    private ProductService productService = new ProductService();
+
+    public Order() {
+    }
+
+    public Order(int id, Timestamp orderDate, Integer quantity, Integer customerID, Integer productID) {
         this.id = id;
         this.orderDate = orderDate;
         this.quantity = quantity;
         this.customerID = customerID;
         this.productID = productID;
-//        this.price = BigDecimal.valueOf(quantity).multiply(product.getPrice());
+        this.price = BigDecimal.valueOf(quantity).multiply(productService.getByID(productID).getPrice());
     }
 
-    public Order(LocalDate orderDate, Integer quantity, Integer customerID, Integer productID/*, BigDecimal price*/) {
+    public Order(Timestamp orderDate, Integer quantity, Integer customerID, Integer productID, BigDecimal price) {
         this.id = null;
         this.orderDate = orderDate;
         this.quantity = quantity;
         this.customerID = customerID;
         this.productID = productID;
-//        this.price = price.setScale(2, RoundingMode.HALF_EVEN);
+        this.price = price.setScale(2, RoundingMode.HALF_EVEN);
     }
 
-//    public Order(int id, LocalDate orderDate, Integer quantity, Integer customerID, Integer productID) {
-//        this.id = id;
-//        this.orderDate = orderDate;
-//        this.quantity = quantity;
-//        this.customerID = customerID;
-//        this.productID = productID;
-//        this.price = BigDecimal.valueOf(quantity).multiply(product.getPrice());
-//    }
+    public Order(Timestamp orderDate, Integer quantity, Integer customerID, Integer productID) {
+        this.id = id;
+        this.orderDate = orderDate;
+        this.quantity = quantity;
+        this.customerID = customerID;
+        this.productID = productID;
+        this.price = BigDecimal.valueOf(quantity).multiply(productService.getByID(productID).getPrice());
+    }
+
+    public Order(Integer id, Timestamp orderDate, Integer quantity, Integer customerID, Integer productID, BigDecimal price) {
+        this.id = id;
+        this.orderDate = orderDate;
+        this.quantity = quantity;
+        this.customerID = customerID;
+        this.productID = productID;
+        this.price = price;
+    }
 
     public Integer getId() {
         return id;
@@ -50,11 +67,11 @@ public class Order extends EntityID /*implements CSVSerializable*/ {
         this.id = id;
     }
 
-    public LocalDate getOrderDate() {
+    public Timestamp getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate dateTime) {
+    public void setOrderDate(Timestamp dateTime) {
         this.orderDate = dateTime;
     }
 
@@ -66,7 +83,32 @@ public class Order extends EntityID /*implements CSVSerializable*/ {
         this.quantity = quantity;
     }
 
-//    public Customer getCustomer() {
+    public Integer getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(Integer customerID) {
+        this.customerID = customerID;
+    }
+
+    public Integer getProductID() {
+        return productID;
+    }
+
+    public void setProductID(Integer productID) {
+        this.productID = productID;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+
+    //    public Customer getCustomer() {
 //        return customer;
 //    }
 //
@@ -90,6 +132,7 @@ public class Order extends EntityID /*implements CSVSerializable*/ {
                 ", quantity=" + quantity +
                 ", customerID=" + customerID +
                 ", productID=" + productID +
+                ", price=" + price +
                 '}';
     }
 

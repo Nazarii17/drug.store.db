@@ -1,13 +1,9 @@
 package nazarii.tkachuk.com.DAO;
 
-import nazarii.tkachuk.com.entities.Customer;
+
 import nazarii.tkachuk.com.entities.Product;
-import nazarii.tkachuk.com.providers.JdbcProvider;
 import nazarii.tkachuk.com.providers.JdbcWorkProvider;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-
 import java.math.BigDecimal;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
