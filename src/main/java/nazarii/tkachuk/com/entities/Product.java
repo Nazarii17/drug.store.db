@@ -98,7 +98,6 @@ public class Product extends EntityID /*implements CSVSerializable*/ {
                 ", \nInformation: '" + info + " '" +
                 '}';
     }
-
 //    @Override
 //    public String toCSVFormattedString() {
 //        return String.format(CSVFormats.PRODUCT.getFormatValue(), id + ",", name + ",", price + ",", info);

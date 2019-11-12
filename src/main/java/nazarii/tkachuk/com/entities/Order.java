@@ -1,7 +1,5 @@
 package nazarii.tkachuk.com.entities;
 
-//import nazarii.tkachuk.com.enums.CSVFormats;
-
 import nazarii.tkachuk.com.services.ProductService;
 
 import java.math.BigDecimal;
@@ -21,6 +19,10 @@ public class Order extends EntityID /*implements CSVSerializable*/ {
     private ProductService productService = new ProductService();
 
     public Order() {
+    }
+
+    public Order(Integer id) {
+        this.id = id;
     }
 
     public Order(int id, Timestamp orderDate, Integer quantity, Integer customerID, Integer productID) {
@@ -106,8 +108,6 @@ public class Order extends EntityID /*implements CSVSerializable*/ {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-
-
     //    public Customer getCustomer() {
 //        return customer;
 //    }
@@ -123,7 +123,6 @@ public class Order extends EntityID /*implements CSVSerializable*/ {
 //    public void setProduct(Product product) {
 //        this.product = product;
 //    }
-
     @Override
     public String toString() {
         return "Order{" +
@@ -152,7 +151,6 @@ public class Order extends EntityID /*implements CSVSerializable*/ {
     public int hashCode() {
         return Objects.hash(getId(), getOrderDate(), getQuantity(), customerID, productID, price);
     }
-
 //    @Override
 //    public String toCSVFormattedString() {
 //        return String.format(CSVFormats.ORDER.getFormatValue(),  id + ",", orderDate + ",",

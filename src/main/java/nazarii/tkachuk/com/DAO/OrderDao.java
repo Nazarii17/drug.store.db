@@ -212,5 +212,17 @@ public class OrderDao implements DAO<Order> {
         }
     }
 
+    public void deleteByDate(String date) {
 
+        String sql = "DELETE FROM `drugstoredb`.`order` WHERE `orderDate` = ?";
+
+        PreparedStatement preparedStatement = JdbcWorkProvider.getPreparedStation(sql);
+
+        try {
+            preparedStatement.setString(1,date);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

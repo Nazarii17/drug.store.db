@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CustomerService {
 
-    CustomerDAO customerDAO = new CustomerDAO();
+    private CustomerDAO customerDAO = new CustomerDAO();
 
     public Customer getByID(int id) {
         return customerDAO.getByID(id).get();

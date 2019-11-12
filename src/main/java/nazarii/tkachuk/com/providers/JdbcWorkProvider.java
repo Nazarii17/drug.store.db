@@ -11,28 +11,10 @@ public class JdbcWorkProvider {
     private static final String DB_PASSWORD = PropertiesProvider.getProperty("db.password");
     private static final String URL = "jdbc:mysql://localhost:3306/drugstoredb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
-    //    Driver driver;
     static Connection connection = null;
+
     private static PreparedStatement preparedStatement = null;
 
-//    public JdbcWorkProvider() {
-//        try {
-//            Driver driver = new com.mysql.jdbc.Driver();
-//        } catch (SQLException e) {
-//            System.err.println("Unable to load driver class!!!");
-//            e.printStackTrace();
-//        }
-//
-//        getConnection();
-//    }
-    //    private void loadDriver() {
-//        try {
-//            driver = new com.mysql.jdbc.Driver();
-//        } catch (SQLException e) {
-//            System.err.println("Unable to load driver class!!!");
-//            e.printStackTrace();
-//        }
-//    }
     private static Connection getConnection() {
         try {
             connection = DriverManager.getConnection(URL, DB_USER, DB_PASSWORD);
@@ -55,6 +37,4 @@ public class JdbcWorkProvider {
         getPreparedStation(sql);
 
     }
-
-
 }

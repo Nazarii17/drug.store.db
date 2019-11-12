@@ -75,5 +75,4 @@ public class ProductService {
     public void deleteByName(String name){
         productDAO.deleteByName(name);
     }
-
 }

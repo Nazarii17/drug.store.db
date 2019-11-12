@@ -67,7 +67,6 @@ public class Person extends EntityID {
     public int hashCode() {
         return Objects.hash(getId(), getName(), getLastName());
     }
-
 //    @Override
 //    public String toCSVFormattedString() {
 //        return null;
