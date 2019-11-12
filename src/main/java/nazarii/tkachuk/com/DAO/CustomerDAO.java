@@ -104,6 +104,17 @@ public class CustomerDAO implements DAO<Customer> {
         return JdbcProvider.getJdbcTemplate().update(sql, args) == 1;
     }
 
+    public boolean deleteByPhoneNumber(String phoneNumber) {
+        String sql = "DELETE FROM `drugstoredb`.`customer` WHERE `phoneNumber` = ?";
+        Object[] args = new Object[]{phoneNumber};
 
+        return JdbcProvider.getJdbcTemplate().update(sql, args) == 1;
+    }
 
+    public boolean deleteByEmail(String email) {
+        String sql = "DELETE FROM `drugstoredb`.`customer` WHERE `email` = ?";
+        Object[] args = new Object[]{email};
+
+        return JdbcProvider.getJdbcTemplate().update(sql, args) == 1;
+    }
 }
