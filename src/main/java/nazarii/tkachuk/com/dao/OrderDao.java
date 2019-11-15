@@ -1,8 +1,7 @@
-package nazarii.tkachuk.com.DAO;
+package nazarii.tkachuk.com.dao;
 
 import nazarii.tkachuk.com.entities.Order;
-import nazarii.tkachuk.com.entities.Product;
-import nazarii.tkachuk.com.providers.JdbcWorkProvider;
+import nazarii.tkachuk.com.providers.JdbcConnectionProvider;
 import nazarii.tkachuk.com.services.ProductService;
 
 import java.math.BigDecimal;
@@ -29,7 +28,7 @@ public class OrderDao implements DAO<Order> {
         Order order = null;
 
         try {
-            resultSet = JdbcWorkProvider.getPreparedStation(sql).executeQuery();
+            resultSet = JdbcConnectionProvider.getPreparedStation(sql).executeQuery();
 
             while (resultSet.next()) {
                 order = new Order(
@@ -55,7 +54,7 @@ public class OrderDao implements DAO<Order> {
         List<Order> orders = new ArrayList<>();
 
         try {
-            resultSet = JdbcWorkProvider.getPreparedStation(sql).executeQuery();
+            resultSet = JdbcConnectionProvider.getPreparedStation(sql).executeQuery();
 
             while (resultSet.next()) {
                 orders.add(new Order(
@@ -83,7 +82,7 @@ public class OrderDao implements DAO<Order> {
         List<Order> orders = new ArrayList<>();
 
         try {
-            resultSet = JdbcWorkProvider.getPreparedStation(sql).executeQuery();
+            resultSet = JdbcConnectionProvider.getPreparedStation(sql).executeQuery();
 
             while (resultSet.next()) {
                 orders.add(new Order(
@@ -110,7 +109,7 @@ public class OrderDao implements DAO<Order> {
                 "(`orderDate`, `quantity`, `customer_id`, `product_id`, `price`) " +
                 "VALUES ( ?, ?, ?, ?, ?)";
 
-        PreparedStatement preparedStatement = JdbcWorkProvider.getPreparedStation(sql);
+        PreparedStatement preparedStatement = JdbcConnectionProvider.getPreparedStation(sql);
 
         BigDecimal price = BigDecimal.valueOf(order.getQuantity()).multiply(productService.getByID(order.getProductID()).getPrice());
 
@@ -139,7 +138,7 @@ public class OrderDao implements DAO<Order> {
                 "t.`price` = ? " +
                 "WHERE t.`id` = " + order.getId() + ";";
 
-        PreparedStatement preparedStatement = JdbcWorkProvider.getPreparedStation(sql);
+        PreparedStatement preparedStatement = JdbcConnectionProvider.getPreparedStation(sql);
 
         try {
             preparedStatement.setTimestamp(1, Timestamp.valueOf(params[0]));
@@ -166,7 +165,7 @@ public class OrderDao implements DAO<Order> {
                 "t.`price` = ? " +
                 "WHERE t.`id` = " + order.getId() + ";";
 
-        PreparedStatement preparedStatement = JdbcWorkProvider.getPreparedStation(sql);
+        PreparedStatement preparedStatement = JdbcConnectionProvider.getPreparedStation(sql);
 
         try {
             preparedStatement.setTimestamp(1, order.getOrderDate());
@@ -188,7 +187,7 @@ public class OrderDao implements DAO<Order> {
 
         String sql = "DELETE FROM `drugstoredb`.`order` WHERE `id` = ?";
 
-        PreparedStatement preparedStatement = JdbcWorkProvider.getPreparedStation(sql);
+        PreparedStatement preparedStatement = JdbcConnectionProvider.getPreparedStation(sql);
 
         try {
             preparedStatement.setInt(1,order.getId());
@@ -202,7 +201,7 @@ public class OrderDao implements DAO<Order> {
 
         String sql = "DELETE FROM `drugstoredb`.`order` WHERE `id` = ?";
 
-        PreparedStatement preparedStatement = JdbcWorkProvider.getPreparedStation(sql);
+        PreparedStatement preparedStatement = JdbcConnectionProvider.getPreparedStation(sql);
 
         try {
             preparedStatement.setInt(1,id);
@@ -216,7 +215,7 @@ public class OrderDao implements DAO<Order> {
 
         String sql = "DELETE FROM `drugstoredb`.`order` WHERE `orderDate` = ?";
 
-        PreparedStatement preparedStatement = JdbcWorkProvider.getPreparedStation(sql);
+        PreparedStatement preparedStatement = JdbcConnectionProvider.getPreparedStation(sql);
 
         try {
             preparedStatement.setString(1,date);

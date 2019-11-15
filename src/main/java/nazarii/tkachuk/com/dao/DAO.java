@@ -1,4 +1,4 @@
-package nazarii.tkachuk.com.DAO;
+package nazarii.tkachuk.com.dao;
 
 import java.util.List;
 import java.util.Optional;

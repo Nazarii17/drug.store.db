@@ -1,8 +1,8 @@
-package nazarii.tkachuk.com.DAO;
+package nazarii.tkachuk.com.dao;
 
 
 import nazarii.tkachuk.com.entities.Product;
-import nazarii.tkachuk.com.providers.JdbcWorkProvider;
+import nazarii.tkachuk.com.providers.JdbcConnectionProvider;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class ProductDAO implements DAO<Product>{
 
     @Override
-    public Optional<Product> getByID(int id) {
+    public Optional<Product> getByID(int id)  {
 
         String sql = "select id, name, price, info, discount " +
                 "from drugstoredb.product " +
@@ -24,7 +24,7 @@ public class ProductDAO implements DAO<Product>{
         Product product = null;
 
         try {
-            resultSet = JdbcWorkProvider.getPreparedStation(sql).executeQuery();
+            resultSet = JdbcConnectionProvider.getPreparedStation(sql).executeQuery();
 
             while (resultSet.next()) {
                 product = new Product(
@@ -49,7 +49,7 @@ public class ProductDAO implements DAO<Product>{
         ResultSet resultSet;
         List<Product> productList = new ArrayList<>();
         try {
-            resultSet = JdbcWorkProvider.getPreparedStation(sql).executeQuery();
+            resultSet = JdbcConnectionProvider.getPreparedStation(sql).executeQuery();
 
             while (resultSet.next()) {
                 productList.add(new Product(
@@ -75,7 +75,7 @@ public class ProductDAO implements DAO<Product>{
 
         String sql = "INSERT INTO `drugstoredb`.`product` (`name`, `price`, `info`, `discount`) VALUES ( ?, ?, ?, ?)";
 
-        PreparedStatement preparedStatement = JdbcWorkProvider.getPreparedStation(sql);
+        PreparedStatement preparedStatement = JdbcConnectionProvider.getPreparedStation(sql);
         int rowsInserted = 0;
         try {
             preparedStatement.setString(1, product.getName());
@@ -102,7 +102,7 @@ public class ProductDAO implements DAO<Product>{
                 "t.`discount` = ? " +
                 "WHERE t.`id` = " + product.getId() + ";";
 
-        PreparedStatement preparedStatement = JdbcWorkProvider.getPreparedStation(sql);
+        PreparedStatement preparedStatement = JdbcConnectionProvider.getPreparedStation(sql);
 
         try {
             preparedStatement.setString(1, params[0]);
@@ -125,7 +125,7 @@ public class ProductDAO implements DAO<Product>{
                 "t.`discount` = ? " +
                 "WHERE t.`id` = " + product.getId() + ";";
 
-        PreparedStatement preparedStatement = JdbcWorkProvider.getPreparedStation(sql);
+        PreparedStatement preparedStatement = JdbcConnectionProvider.getPreparedStation(sql);
 
         try {
             preparedStatement.setString(1, product.getName());
@@ -144,7 +144,7 @@ public class ProductDAO implements DAO<Product>{
 
         String sql = "DELETE FROM `drugstoredb`.`product` WHERE `id` = ?";
 
-        PreparedStatement preparedStatement = JdbcWorkProvider.getPreparedStation(sql);
+        PreparedStatement preparedStatement = JdbcConnectionProvider.getPreparedStation(sql);
         try {
             preparedStatement.setInt(1,product.getId());
             preparedStatement.executeUpdate();
@@ -157,7 +157,7 @@ public class ProductDAO implements DAO<Product>{
 
         String sql = "DELETE FROM `drugstoredb`.`product` WHERE `id` = ?";
 
-        PreparedStatement preparedStatement = JdbcWorkProvider.getPreparedStation(sql);
+        PreparedStatement preparedStatement = JdbcConnectionProvider.getPreparedStation(sql);
         try {
             preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
@@ -170,7 +170,7 @@ public class ProductDAO implements DAO<Product>{
 
         String sql = "DELETE FROM `drugstoredb`.`product` WHERE `name` = ?";
 
-        PreparedStatement preparedStatement = JdbcWorkProvider.getPreparedStation(sql);
+        PreparedStatement preparedStatement = JdbcConnectionProvider.getPreparedStation(sql);
         try {
             preparedStatement.setString(1,name);
             preparedStatement.executeUpdate();

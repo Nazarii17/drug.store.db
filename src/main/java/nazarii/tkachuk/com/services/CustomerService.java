@@ -1,6 +1,6 @@
 package nazarii.tkachuk.com.services;
 
-import nazarii.tkachuk.com.DAO.CustomerDAO;
+import nazarii.tkachuk.com.dao.CustomerDAO;
 import nazarii.tkachuk.com.entities.Customer;
 
 import java.util.List;

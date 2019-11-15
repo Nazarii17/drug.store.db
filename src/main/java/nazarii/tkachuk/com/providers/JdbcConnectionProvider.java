@@ -3,15 +3,22 @@ package nazarii.tkachuk.com.providers;
 import java.sql.*;
 import java.sql.DriverManager;
 
-public class JdbcWorkProvider {
-
-    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+public class JdbcConnectionProvider {
 
     private static final String DB_USER = PropertiesProvider.getProperty("db.user");
     private static final String DB_PASSWORD = PropertiesProvider.getProperty("db.password");
-    private static final String URL = "jdbc:mysql://localhost:3306/drugstoredb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String HOST = PropertiesProvider.getProperty("db.host");
+    private static final String PORT = PropertiesProvider.getProperty("db.port");
+    private static final String DB_NAME = PropertiesProvider.getProperty("db.name");
+    private static final String URL = buildUrl(HOST,PORT,DB_NAME);
 
-    static Connection connection = null;
+    private static String buildUrl(String host,
+                                   String port,
+                                   String dbName){
+        return String.format("jdbc:mysql://%s:%s/%s?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",host,port,dbName);
+    }
+
+    private static Connection connection = null;
 
     private static PreparedStatement preparedStatement = null;
 
@@ -31,10 +38,5 @@ public class JdbcWorkProvider {
             e.printStackTrace();
         }
         return preparedStatement;
-    }
-
-    public static void UUUU(String sql){
-        getPreparedStation(sql);
-
     }
 }

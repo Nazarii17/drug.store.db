@@ -1,12 +1,11 @@
 package nazarii.tkachuk.com.services;
 
-import nazarii.tkachuk.com.DAO.OrderDao;
+import nazarii.tkachuk.com.dao.OrderDao;
 import nazarii.tkachuk.com.entities.Order;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Optional;
 
 public class OrderService {
 

@@ -1,6 +1,6 @@
 package nazarii.tkachuk.com.services;
 
-import nazarii.tkachuk.com.DAO.ProductDAO;
+import nazarii.tkachuk.com.dao.ProductDAO;
 import nazarii.tkachuk.com.entities.Product;
 
 import java.math.BigDecimal;

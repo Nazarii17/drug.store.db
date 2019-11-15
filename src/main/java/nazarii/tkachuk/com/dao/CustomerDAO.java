@@ -1,10 +1,8 @@
-package nazarii.tkachuk.com.DAO;
+package nazarii.tkachuk.com.dao;
 
 import nazarii.tkachuk.com.entities.Customer;
 import nazarii.tkachuk.com.providers.JdbcProvider;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +24,7 @@ public class CustomerDAO implements DAO<Customer> {
     @Override
     public List<Customer> getAll() {
         List<Customer> customers = JdbcProvider.getJdbcTemplate().query(
-                "select id, name, lastName, phoneNumber, email from drugstoredb.customer;",
+                "select id, name, lastName, phoneNumber, email from customer;",
                 new BeanPropertyRowMapper(Customer.class));
         return customers;
     }
@@ -40,7 +38,7 @@ public class CustomerDAO implements DAO<Customer> {
     @Override
     public void save(Customer customer) {
 
-        String sql = "INSERT INTO `drugstoredb`.`customer` (`name`, `lastName`, `phoneNumber`, `email`) VALUES ( ?, ?, ?, ?)";
+        String sql = "INSERT INTO `customer` (`name`, `lastName`, `phoneNumber`, `email`) VALUES ( ?, ?, ?, ?)";
 
         JdbcProvider.getJdbcTemplate().update(sql,
                 customer.getName(),
@@ -99,9 +97,8 @@ public class CustomerDAO implements DAO<Customer> {
 
     public boolean deleteByID(Integer id) {
         String sql = "DELETE FROM `drugstoredb`.`customer` WHERE `id` = ?";
-        Object[] args = new Object[]{id};
 
-        return JdbcProvider.getJdbcTemplate().update(sql, args) == 1;
+        return JdbcProvider.getJdbcTemplate().update(sql, id) == 1;
     }
 
     public boolean deleteByPhoneNumber(String phoneNumber) {
@@ -113,8 +110,7 @@ public class CustomerDAO implements DAO<Customer> {
 
     public boolean deleteByEmail(String email) {
         String sql = "DELETE FROM `drugstoredb`.`customer` WHERE `email` = ?";
-        Object[] args = new Object[]{email};
 
-        return JdbcProvider.getJdbcTemplate().update(sql, args) == 1;
+        return JdbcProvider.getJdbcTemplate().update(sql, email) == 1;
     }
 }

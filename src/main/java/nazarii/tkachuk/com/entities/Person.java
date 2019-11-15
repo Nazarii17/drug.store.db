@@ -2,7 +2,7 @@ package nazarii.tkachuk.com.entities;
 
 import java.util.Objects;
 
-public class Person extends EntityID {
+public abstract class Person extends EntityID {
     protected Integer id;
     protected String name;
     protected String lastName;
