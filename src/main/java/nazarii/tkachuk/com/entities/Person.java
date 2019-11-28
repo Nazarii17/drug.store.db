@@ -67,13 +67,5 @@ public abstract class Person extends EntityID {
     public int hashCode() {
         return Objects.hash(getId(), getName(), getLastName());
     }
-//    @Override
-//    public String toCSVFormattedString() {
-//        return null;
-//    }
-//
-//    @Override
-//    public String toCSVString() {
-//        return null;
-//    }
+
 }

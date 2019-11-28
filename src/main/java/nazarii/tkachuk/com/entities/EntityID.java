@@ -1,6 +1,6 @@
 package nazarii.tkachuk.com.entities;
 
-public abstract class EntityID /*implements CSVSerializable8*/{
+public abstract class EntityID {
     protected Integer id;
 
     public Integer getId() {

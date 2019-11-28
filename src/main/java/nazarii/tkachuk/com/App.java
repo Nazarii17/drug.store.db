@@ -7,8 +7,6 @@ import nazarii.tkachuk.com.services.CustomerService;
 import nazarii.tkachuk.com.services.OrderService;
 import nazarii.tkachuk.com.services.ProductService;
 
-import java.math.BigDecimal;
-
 public class App {
     public static void main(String[] args) {
 
@@ -19,8 +17,5 @@ public class App {
         ProductDAO productDAO = new ProductDAO();
         OrderDao orderDao = new OrderDao();
 
-//        productService.save("Protein+",new BigDecimal("25.5"), "Strong",0);
-
-        customerService.deleteByEmail("kitty@mail.com");
     }
 }

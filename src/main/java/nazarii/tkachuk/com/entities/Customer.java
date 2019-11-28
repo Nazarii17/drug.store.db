@@ -1,10 +1,8 @@
 package nazarii.tkachuk.com.entities;
 
-//import nazarii.tkachuk.com.enums.CSVFormats;
-
 import java.util.Objects;
 
-public class Customer extends Person /*implements CSVSerializable8*/ {
+public class Customer extends Person{
     private String phoneNumber;
     private String email;
 
@@ -79,13 +77,4 @@ public class Customer extends Person /*implements CSVSerializable8*/ {
         return Objects.hash(super.hashCode(), phoneNumber, email);
     }
 
-    //    @Override
-//    public String toCSVFormattedString() {
-//        return String.format(CSVFormats.CUSTOMER.getFormatValue(), id+",", name +",", lastName+",",  phoneNumber);
-//    }
-//
-//    @Override
-//    public String toCSVString() {
-//        return id + "," + name + "," + lastName + "," +  phoneNumber+"\n";
-//    }
 }

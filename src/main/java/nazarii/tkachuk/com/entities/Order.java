@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Order extends EntityID /*implements CSVSerializable*/ {
+public class Order extends EntityID {
     private Integer id;
     private Timestamp orderDate;
     private Integer quantity;
@@ -151,14 +151,4 @@ public class Order extends EntityID /*implements CSVSerializable*/ {
     public int hashCode() {
         return Objects.hash(getId(), getOrderDate(), getQuantity(), customerID, productID, price);
     }
-//    @Override
-//    public String toCSVFormattedString() {
-//        return String.format(CSVFormats.ORDER.getFormatValue(),  id + ",", orderDate + ",",
-//                quantity + ",", customerID + ",", productID  + ",", price);
-//    }
-//
-//    @Override
-//    public String toCSVString() {
-//        return id + ","+ orderDate + ","+ quantity + "," + customerID + "," + productID  + "," + price+"\n";
-//    }
 }

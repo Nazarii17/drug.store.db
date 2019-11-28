@@ -1,10 +1,8 @@
 package nazarii.tkachuk.com.entities;
 
-//import nazarii.tkachuk.com.enums.CSVFormats;
-
 import java.math.BigDecimal;
 
-public class Product extends EntityID /*implements CSVSerializable*/ {
+public class Product extends EntityID {
     private Integer id;
     private String name;
     private BigDecimal price;
@@ -98,13 +96,4 @@ public class Product extends EntityID /*implements CSVSerializable*/ {
                 ", \nInformation: '" + info + " '" +
                 '}';
     }
-//    @Override
-//    public String toCSVFormattedString() {
-//        return String.format(CSVFormats.PRODUCT.getFormatValue(), id + ",", name + ",", price + ",", info);
-//    }
-//
-//    @Override
-//    public String toCSVString() {
-//        return id + "," + name + "," +  price + "," + info+"\n";
-//    }
 }
